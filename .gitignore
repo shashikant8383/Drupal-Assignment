@@ -1,5 +1,11 @@
 # Composer dependencies.
 /vendor/
+/web/core/
+/web/autoload.php
+/web/libraries/
+/web/modules/contrib/
+/web/profiles/contrib/
+/web/themes/contrib/
 
 # Drupal generated and local files.
 /web/sites/*/files/
