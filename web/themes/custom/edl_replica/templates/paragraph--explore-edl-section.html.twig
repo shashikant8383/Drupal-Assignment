@@ -1,11 +1,15 @@
-{% set bg = paragraph.field_background_image.entity ? paragraph.field_background_image.entity.uri.value|file_url : '' %}
+{% set bg = paragraph.field_background_image.entity ? file_url(paragraph.field_background_image.entity.uri.value) : '' %}
 
-<section class="edl-section edl-explore" style="background-image: url('{{ bg }}');">
-  <div class="edl-container">
-    <h2>{{ paragraph.field_heading.value }}</h2>
-    {{ content.field_body }}
-    <div class="edl-link-grid">
-      {{ content.field_explore_links }}
+<section class="edl-explore">
+  <div class="edl-explore__image" style="background-image: url('{{ bg }}');"></div>
+  <div class="edl-explore__panel">
+    <div class="edl-explore__content">
+      <h2>{{ paragraph.field_heading.value }}</h2>
+      <span class="edl-gold-rule" aria-hidden="true"></span>
+      {{ content.field_body }}
+      <div class="edl-link-grid">
+        {{ content.field_explore_links }}
+      </div>
     </div>
   </div>
 </section>

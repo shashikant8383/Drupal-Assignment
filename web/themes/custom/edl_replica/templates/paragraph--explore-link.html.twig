@@ -1,6 +1,8 @@
 {% set url = paragraph.field_link.0.url ? paragraph.field_link.0.url : '#' %}
 {% set title = paragraph.field_link.0.title ?: paragraph.field_link_title.value %}
+{% set href %}{{ url }}{% endset %}
 
-<a class="edl-link-card" href="{{ url }}">
+<a class="edl-link-card" href="{{ href|trim ?: '#' }}">
   <span>{{ title }}</span>
+  <span aria-hidden="true">›</span>
 </a>

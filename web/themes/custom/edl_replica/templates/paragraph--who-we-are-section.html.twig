@@ -1,14 +1,15 @@
+{% set image = paragraph.field_image.entity ? file_url(paragraph.field_image.entity.uri.value) : '' %}
+
 <section class="edl-section edl-who">
   <div class="edl-container edl-grid-2">
     <div>
       <h2>{{ paragraph.field_heading.value }}</h2>
       {{ content.field_body }}
+    </div>
+    <div class="edl-who__visual" style="background-image: url('{{ image }}');">
       <div class="edl-logo-mark">
         {{ content.field_logo }}
       </div>
-    </div>
-    <div class="edl-image">
-      {{ content.field_image }}
     </div>
   </div>
 </section>

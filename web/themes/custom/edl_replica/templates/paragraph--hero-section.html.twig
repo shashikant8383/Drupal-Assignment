@@ -1,10 +1,12 @@
-{% set bg = paragraph.field_background_image.entity ? paragraph.field_background_image.entity.uri.value|file_url : '' %}
+{% set bg = paragraph.field_background_image.entity ? file_url(paragraph.field_background_image.entity.uri.value) : '' %}
 
 <section class="edl-hero" style="background-image: url('{{ bg }}');">
-  <div class="edl-container">
-    <h1>{{ paragraph.field_heading.value }}</h1>
-    <div class="edl-hero__text">
-      {{ content.field_subheading }}
+  <div class="edl-container edl-hero__inner">
+    <div class="edl-hero__panel">
+      <h1>{{ paragraph.field_heading.value }}</h1>
+      <div class="edl-hero__text">
+        {{ content.field_subheading }}
+      </div>
     </div>
   </div>
 </section>

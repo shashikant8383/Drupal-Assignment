@@ -1,12 +1,13 @@
 {% set url = paragraph.field_button.0.url ? paragraph.field_button.0.url : '#' %}
 {% set title = paragraph.field_button.0.title ?: 'Learn more' %}
+{% set href %}{{ url }}{% endset %}
 
 <section class="edl-section edl-studio">
   <div class="edl-container edl-grid-2">
-    <div>
+    <div class="edl-studio__copy">
       <h2>{{ paragraph.field_heading.value }}</h2>
       {{ content.field_body }}
-      <a class="edl-button edl-button--dark" href="{{ url }}">{{ title }}</a>
+      <a class="edl-button edl-button--dark" href="{{ href|trim ?: '#' }}">{{ title }}</a>
     </div>
     <div class="edl-studio__media">
       {{ content.field_image }}
