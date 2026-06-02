@@ -1,0 +1,6 @@
+{% set url = paragraph.field_link.0.url ? paragraph.field_link.0.url : '#' %}
+{% set title = paragraph.field_link.0.title ?: paragraph.field_link_title.value %}
+
+<a class="edl-link-card" href="{{ url }}">
+  <span>{{ title }}</span>
+</a>

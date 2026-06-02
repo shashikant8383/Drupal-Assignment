@@ -1,0 +1,215 @@
+:root {
+  --asu-maroon: #8c1d40;
+  --asu-gold: #ffc627;
+  --black: #191919;
+  --white: #ffffff;
+  --gray: #f4f4f4;
+  --border: #d0d0d0;
+}
+
+body {
+  margin: 0;
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.edl-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.edl-section {
+  padding: 64px 0;
+}
+
+.edl-hero {
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  padding: 56px 0;
+  color: var(--white);
+  background-size: cover;
+  background-position: center;
+}
+
+.edl-hero h1 {
+  max-width: 760px;
+  margin: 0 0 12px;
+  font-size: 48px;
+  line-height: 1.08;
+}
+
+.edl-hero__text {
+  max-width: 640px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.edl-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.edl-who h2,
+.edl-services h2,
+.edl-studio h2,
+.edl-explore h2 {
+  margin-top: 0;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.edl-image img,
+.edl-card__image img,
+.edl-services__image img,
+.edl-studio__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.edl-logo-mark {
+  max-width: 420px;
+  margin-top: 28px;
+}
+
+.edl-mission {
+  color: var(--white);
+  background-color: var(--black);
+  background-repeat: repeat;
+}
+
+.edl-mission__inner {
+  max-width: 880px;
+  text-align: center;
+}
+
+.edl-mission blockquote {
+  margin: 20px auto;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.edl-quote-icon img {
+  width: 54px;
+  margin: 0 auto;
+}
+
+.edl-services {
+  background: var(--gray);
+}
+
+.edl-services__image {
+  max-height: 360px;
+  overflow: hidden;
+  margin-bottom: 56px;
+}
+
+.edl-card-grid,
+.edl-link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.edl-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.edl-card__image img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.edl-card__body {
+  padding: 24px;
+}
+
+.edl-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.edl-button {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--black);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--asu-gold);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 5px;
+}
+
+.edl-button:hover,
+.edl-button:focus {
+  color: var(--asu-maroon);
+}
+
+.edl-button--dark {
+  color: var(--asu-maroon);
+}
+
+.edl-studio {
+  background: var(--white);
+}
+
+.edl-studio__media {
+  position: relative;
+  border-left: 8px solid var(--asu-gold);
+}
+
+.edl-play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 70px;
+  transform: translate(-50%, -50%);
+}
+
+.edl-explore {
+  background-size: cover;
+  background-position: center;
+}
+
+.edl-link-card {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  padding: 22px;
+  background: var(--white);
+  border-left: 6px solid var(--asu-gold);
+  color: var(--black);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.edl-link-card:hover,
+.edl-link-card:focus {
+  background: var(--black);
+  color: var(--white);
+}
+
+@media (max-width: 900px) {
+  .edl-grid-2,
+  .edl-card-grid,
+  .edl-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edl-hero h1 {
+    font-size: 36px;
+  }
+
+  .edl-who h2,
+  .edl-services h2,
+  .edl-studio h2,
+  .edl-explore h2 {
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,11 @@
+name: EDL Replica
+type: theme
+description: Drupal 11 theme for the EDL homepage replica.
+core_version_requirement: ^11
+base theme: stable9
+libraries:
+  - edl_replica/global
+regions:
+  header: Header
+  content: Content
+  footer: Footer

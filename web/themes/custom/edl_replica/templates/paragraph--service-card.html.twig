@@ -1,0 +1,13 @@
+{% set url = paragraph.field_service_link.0.url ? paragraph.field_service_link.0.url : '#' %}
+{% set title = paragraph.field_service_link.0.title ?: 'Learn more' %}
+
+<article class="edl-card">
+  <div class="edl-card__image">
+    {{ content.field_service_image }}
+  </div>
+  <div class="edl-card__body">
+    <h3>{{ paragraph.field_service_title.value }}</h3>
+    {{ content.field_service_body }}
+    <a class="edl-button" href="{{ url }}">{{ title }}</a>
+  </div>
+</article>

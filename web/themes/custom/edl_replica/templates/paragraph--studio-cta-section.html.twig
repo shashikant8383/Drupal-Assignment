@@ -1,0 +1,16 @@
+{% set url = paragraph.field_button.0.url ? paragraph.field_button.0.url : '#' %}
+{% set title = paragraph.field_button.0.title ?: 'Learn more' %}
+
+<section class="edl-section edl-studio">
+  <div class="edl-container edl-grid-2">
+    <div>
+      <h2>{{ paragraph.field_heading.value }}</h2>
+      {{ content.field_body }}
+      <a class="edl-button edl-button--dark" href="{{ url }}">{{ title }}</a>
+    </div>
+    <div class="edl-studio__media">
+      {{ content.field_image }}
+      <span class="edl-play">{{ content.field_play_icon }}</span>
+    </div>
+  </div>
+</section>
