@@ -33,7 +33,8 @@ ensure_vocabulary('resource_category', 'Resource Category');
 ensure_vocabulary('resource_type', 'Resource Type');
 
 $file_system = \Drupal::service('file_system');
-$file_system->prepareDirectory('public://edl-resources/icons', FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+$destination_directory = 'public://edl-resources/icons';
+$file_system->prepareDirectory($destination_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
 $created = 0;
 $updated = 0;
