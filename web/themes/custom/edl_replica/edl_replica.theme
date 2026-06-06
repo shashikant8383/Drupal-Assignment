@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks for the EDL replica theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Adjusts exposed filters for the Resource Library view.
+ */
+function edl_replica_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  $view = $form_state->get('view');
+  if (!$view || $view->id() !== 'resource_library') {
+    return;
+  }
+
+  if (isset($form['search'])) {
+    $form['search']['#attributes']['placeholder'] = 'Search resources';
+  }
+
+  if (isset($form['category']['#title'])) {
+    $form['category']['#title'] = 'Category';
+  }
+
+  if (isset($form['resource_type']['#title'])) {
+    $form['resource_type']['#title'] = 'Resource type';
+  }
+}

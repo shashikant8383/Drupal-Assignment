@@ -1,4 +1,4 @@
-<section class="edl-resource-header">
+<section id="resource-librarys" class="edl-resource-header">
   <div class="edl-container">
     <h1>Resource Library</h1>
     <p>
@@ -11,7 +11,10 @@
   <div class="edl-container edl-resource-layout">
     {% if exposed %}
       <aside class="edl-resource-filters">
-        <h2>Filter by</h2>
+        <div class="edl-resource-filters__heading">
+          <h2>Filters (0)</h2>
+          <a href="/resources">Clear All</a>
+        </div>
         {{ exposed }}
       </aside>
     {% endif %}
@@ -19,6 +22,10 @@
     <div class="edl-resource-main">
       {{ title_prefix }}
       {{ title_suffix }}
+
+      <div class="edl-resource-count">
+        <strong>{{ view.total_rows }}</strong> resources available
+      </div>
 
       {% if rows %}
         {{ rows }}

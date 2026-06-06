@@ -15,13 +15,13 @@
     {{ fields.title.content }}
   </h2>
 
-  {% if fields.field_resource_summary is defined %}
+  {% if fields.field_resource_summary is defined and fields.field_resource_summary.content|render|striptags|trim %}
     <div class="edl-resource-card__summary">
       {{ fields.field_resource_summary.content }}
     </div>
   {% endif %}
 
-  <div class="edl-resource-card__type">
+  <div class="edl-resource-card__type" aria-label="Resource type">
     {{ fields.field_resource_type.content }}
   </div>
 
