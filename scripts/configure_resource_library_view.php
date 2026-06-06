@@ -62,10 +62,28 @@ $options['sorts'] = [
     'plugin_id' => 'standard',
     'order' => 'ASC',
     'expose' => [
-      'label' => '',
-      'field_identifier' => '',
+      'label' => 'Title',
+      'field_identifier' => 'title',
     ],
-    'exposed' => FALSE,
+    'exposed' => TRUE,
+  ],
+  'created' => [
+    'id' => 'created',
+    'table' => 'node_field_data',
+    'field' => 'created',
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'entity_type' => 'node',
+    'entity_field' => 'created',
+    'plugin_id' => 'date',
+    'order' => 'DESC',
+    'expose' => [
+      'label' => 'Newest',
+      'field_identifier' => 'created',
+    ],
+    'exposed' => TRUE,
+    'granularity' => 'second',
   ],
 ];
 $options['fields'] = [
