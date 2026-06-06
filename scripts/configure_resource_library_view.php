@@ -37,6 +37,18 @@ $options['row'] = [
   ],
 ];
 $options['pager']['options']['items_per_page'] = 50;
+$options['exposed_form'] = [
+  'type' => 'basic',
+  'options' => [
+    'submit_button' => 'Apply',
+    'reset_button' => TRUE,
+    'reset_button_label' => 'Reset',
+    'exposed_sorts_label' => 'Sort by',
+    'expose_sort_order' => TRUE,
+    'sort_asc_label' => 'Asc',
+    'sort_desc_label' => 'Desc',
+  ],
+];
 $options['sorts'] = [
   'title' => [
     'id' => 'title',
@@ -120,6 +132,7 @@ $options['fields'] = [
   ]),
   'field_resource_summary' => resource_field('field_resource_summary', 'Resource Summary', 'basic_string', []),
 ];
+$options['filters'] = resource_library_filters($options['filters'] ?? []);
 
 $display['display_options'] = $options;
 $page = &$view->getDisplay('page_1');
@@ -205,5 +218,145 @@ function base_alter_options(): array {
     'trim' => FALSE,
     'preserve_tags' => '',
     'html' => FALSE,
+  ];
+}
+
+/**
+ * Adds the Resource Library exposed filters while keeping required filters.
+ */
+function resource_library_filters(array $existing_filters): array {
+  $filters = [
+    'status' => $existing_filters['status'] ?? [
+      'id' => 'status',
+      'table' => 'node_field_data',
+      'field' => 'status',
+      'entity_type' => 'node',
+      'entity_field' => 'status',
+      'plugin_id' => 'boolean',
+      'value' => '1',
+      'group' => 1,
+      'expose' => [
+        'operator' => '',
+      ],
+    ],
+    'type' => $existing_filters['type'] ?? [
+      'id' => 'type',
+      'table' => 'node_field_data',
+      'field' => 'type',
+      'entity_type' => 'node',
+      'entity_field' => 'type',
+      'plugin_id' => 'bundle',
+      'value' => [
+        'resource_item' => 'resource_item',
+      ],
+    ],
+  ];
+
+  $filters['title'] = [
+    'id' => 'title',
+    'table' => 'node_field_data',
+    'field' => 'title',
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'entity_type' => 'node',
+    'entity_field' => 'title',
+    'plugin_id' => 'string',
+    'operator' => 'contains',
+    'value' => '',
+    'group' => 1,
+    'exposed' => TRUE,
+    'expose' => exposed_filter_options('Search', 'search', 'title_op'),
+    'is_grouped' => FALSE,
+    'group_info' => grouped_filter_options('Search', 'search'),
+  ];
+
+  $filters['field_resource_category_target_id'] = taxonomy_filter_options(
+    'field_resource_category_target_id',
+    'node__field_resource_category',
+    'Resource Category',
+    'category',
+    'resource_category'
+  );
+
+  $filters['field_resource_type_target_id'] = taxonomy_filter_options(
+    'field_resource_type_target_id',
+    'node__field_resource_type',
+    'Resource Type',
+    'resource_type',
+    'resource_type'
+  );
+
+  return $filters;
+}
+
+/**
+ * Builds taxonomy entity-reference filter options.
+ */
+function taxonomy_filter_options(string $field, string $table, string $label, string $identifier, string $vocabulary): array {
+  return [
+    'id' => $field,
+    'table' => $table,
+    'field' => $field,
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'taxonomy_index_tid',
+    'operator' => 'or',
+    'value' => [],
+    'group' => 1,
+    'exposed' => TRUE,
+    'expose' => exposed_filter_options($label, $identifier, $field . '_op'),
+    'is_grouped' => FALSE,
+    'group_info' => grouped_filter_options($label, $identifier),
+    'reduce_duplicates' => FALSE,
+    'vid' => $vocabulary,
+    'type' => 'select',
+    'hierarchy' => FALSE,
+    'limit' => TRUE,
+    'error_message' => TRUE,
+  ];
+}
+
+/**
+ * Returns common exposed filter settings.
+ */
+function exposed_filter_options(string $label, string $identifier, string $operator_id): array {
+  return [
+    'operator_id' => $operator_id,
+    'label' => $label,
+    'description' => '',
+    'use_operator' => FALSE,
+    'operator' => $operator_id,
+    'operator_limit_selection' => FALSE,
+    'operator_list' => [],
+    'identifier' => $identifier,
+    'required' => FALSE,
+    'remember' => FALSE,
+    'multiple' => FALSE,
+    'remember_roles' => [
+      'authenticated' => 'authenticated',
+      'anonymous' => '0',
+      'administrator' => '0',
+    ],
+    'reduce' => FALSE,
+  ];
+}
+
+/**
+ * Returns empty grouped-filter settings.
+ */
+function grouped_filter_options(string $label, string $identifier): array {
+  return [
+    'label' => $label,
+    'description' => '',
+    'identifier' => $identifier,
+    'optional' => TRUE,
+    'widget' => 'select',
+    'multiple' => FALSE,
+    'remember' => FALSE,
+    'default_group' => 'All',
+    'default_group_multiple' => [],
+    'group_items' => [],
   ];
 }
