@@ -292,7 +292,7 @@ function resource_library_filters(array $existing_filters): array {
   $filters['field_resource_category_target_id'] = taxonomy_filter_options(
     'field_resource_category_target_id',
     'node__field_resource_category',
-    'Resource Category',
+    'Category',
     'category',
     'resource_category'
   );
