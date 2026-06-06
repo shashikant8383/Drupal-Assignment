@@ -2,3 +2,8 @@ global:
   css:
     theme:
       css/global.css: {}
+  js:
+    js/resource-library.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

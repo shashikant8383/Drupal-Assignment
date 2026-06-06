@@ -830,21 +830,20 @@ a {
 }
 
 .edl-resource-library {
-  padding: 20px 0 84px;
+  padding: 24px 0 84px;
   background: #fff;
 }
 
 .edl-resource-layout {
+  position: relative;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 34px;
+  grid-template-columns: 286px minmax(0, 1fr);
+  gap: 40px;
   align-items: start;
 }
 
 .edl-resource-filters {
-  position: sticky;
-  top: 18px;
-  padding: 0 20px 22px 0;
+  padding: 0 0 22px;
 }
 
 .edl-resource-filters__heading {
@@ -852,7 +851,9 @@ a {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d0d0d0;
 }
 
 .edl-resource-filters h2,
@@ -865,13 +866,12 @@ a {
 }
 
 .edl-resource-filters__heading a {
-  color: #191919;
-  font-size: 12px;
+  color: #8c1d40;
+  font-size: 14px;
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: #ffc627;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .edl-resource-filters .views-exposed-form {
@@ -879,19 +879,30 @@ a {
 }
 
 .edl-resource-filters .form-item {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
 }
 
 .edl-resource-filters label {
   display: block;
-  margin: 0 0 8px;
+  margin: 0 0 14px;
   color: #191919;
   font-size: 16px;
   line-height: 1.25;
   font-weight: 700;
 }
 
-.edl-resource-filters input[type="text"],
+.edl-resource-filters input[type="text"] {
+  width: 100%;
+  min-height: 58px;
+  padding: 12px 18px;
+  color: #191919;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 0;
+  font: inherit;
+  font-size: 20px;
+}
+
 .edl-resource-filters select {
   width: 100%;
   min-height: 46px;
@@ -908,34 +919,170 @@ a {
   color: #747474;
 }
 
-.edl-resource-filters .form-actions {
+.edl-resource-filters .form-item-search {
+  position: absolute;
+  top: 0;
+  left: 326px;
+  right: 0;
+  margin: 0;
+}
+
+.edl-resource-filters .form-item-search label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.edl-resource-filters .form-checkboxes {
+  display: grid;
+  gap: 16px;
+}
+
+.edl-resource-original-select {
+  display: none;
+}
+
+.edl-checkbox-list {
+  display: grid;
+  gap: 16px;
+}
+
+.edl-checkbox-list__item {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  margin: 0 !important;
+  color: #191919;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+
+.edl-checkbox-list__item input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.edl-checkbox-list__item input:checked {
+  background: #191919;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.edl-resource-filters .form-type-checkbox {
   display: flex;
-  gap: 12px;
-  margin: 24px 0 0;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.edl-resource-filters .form-type-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.edl-resource-filters .form-type-checkbox input:checked {
+  background: #191919;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.edl-resource-filters .form-type-checkbox label {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.edl-resource-filters .form-item-category,
+.edl-resource-filters .form-item-resource-type {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.edl-resource-filters .form-item-category > label,
+.edl-resource-filters .form-item-resource-type > label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.edl-resource-filters .form-item-category > label::after,
+.edl-resource-filters .form-item-resource-type > label::after {
+  content: "-";
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #191919;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.edl-resource-filters .form-item-sort-by {
+  position: absolute;
+  top: 114px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.edl-resource-filters .form-item-sort-by label {
+  margin: 0;
+  font-size: 18px;
+}
+
+.edl-resource-filters .form-item-sort-by select {
+  width: auto;
+  min-height: 36px;
+  padding: 4px 28px 4px 8px;
+  border: 0;
+  font-weight: 700;
+}
+
+.edl-resource-filters .form-actions {
+  margin: 20px 0 0;
 }
 
 .edl-resource-filters .button {
-  min-height: 42px;
-  padding: 9px 22px;
-  color: #191919;
-  background: #ffc627;
-  border: 1px solid #ffc627;
-  border-radius: 0;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.edl-resource-main {
+  padding-top: 110px;
 }
 
 .edl-resource-count {
   margin: 0 0 28px;
   color: #191919;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.3;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .edl-resource-count strong {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -948,27 +1095,25 @@ a {
 .edl-resource-card {
   position: relative;
   display: flex;
-  min-height: 255px;
+  min-height: 345px;
   flex-direction: column;
-  padding: 22px 22px 24px;
+  padding: 34px 34px 0;
   background: #fff;
   border: 1px solid #d0d0d0;
   box-shadow: 0 4px 12px rgba(25, 25, 25, 0.13);
 }
 
 .edl-resource-card__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 18px;
+  display: block;
+  margin-bottom: 22px;
 }
 
 .edl-resource-card__category {
   display: inline-block;
   color: #fff;
   background: #353535;
-  font-size: 14px;
+  margin-bottom: 28px;
+  font-size: 20px;
   line-height: 1.2;
   font-weight: 700;
 }
@@ -982,7 +1127,7 @@ a {
 }
 
 .edl-resource-card__category .field-content {
-  padding: 4px 8px;
+  padding: 6px 10px;
 }
 
 .edl-resource-card__icon img {
@@ -993,10 +1138,10 @@ a {
 }
 
 .edl-resource-card__title {
-  margin: 0 0 18px;
+  margin: 0 0 28px;
   color: #191919;
-  font-size: 24px;
-  line-height: 1.18;
+  font-size: 28px;
+  line-height: 1.12;
   font-weight: 700;
 }
 
@@ -1028,12 +1173,14 @@ a {
 .edl-resource-card__link a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  margin-top: 14px;
-  padding: 8px 14px;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 9px 24px;
   color: #191919;
-  background: #fff;
-  border: 1px solid #191919;
+  background: #ffc627;
+  border: 0;
+  border-radius: 999px;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
@@ -1042,7 +1189,7 @@ a {
 
 .edl-resource-card__link a:hover,
 .edl-resource-card__link a:focus {
-  background: #f1f1f1;
+  background: #f2b900;
 }
 
 @media (max-width: 1000px) {

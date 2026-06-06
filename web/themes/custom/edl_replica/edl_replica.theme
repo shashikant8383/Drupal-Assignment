@@ -22,9 +22,28 @@ function edl_replica_form_views_exposed_form_alter(array &$form, FormStateInterf
 
   if (isset($form['category']['#title'])) {
     $form['category']['#title'] = 'Category';
+    edl_replica_select_to_checkboxes($form['category']);
   }
 
   if (isset($form['resource_type']['#title'])) {
-    $form['resource_type']['#title'] = 'Resource type';
+    $form['resource_type']['#title'] = 'Resource Type';
+    edl_replica_select_to_checkboxes($form['resource_type']);
   }
+
+  if (isset($form['sort_order'])) {
+    $form['sort_order']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Displays select-style exposed taxonomy filters as checkbox lists.
+ */
+function edl_replica_select_to_checkboxes(array &$element): void {
+  if (($element['#type'] ?? '') !== 'select' || empty($element['#options'])) {
+    return;
+  }
+
+  unset($element['#options']['All']);
+  $element['#type'] = 'checkboxes';
+  $element['#multiple'] = TRUE;
 }
