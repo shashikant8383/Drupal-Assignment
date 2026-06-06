@@ -4,11 +4,13 @@
     const heading = document.querySelector('.edl-resource-filters__heading h2');
 
     root
-      .querySelectorAll('.edl-resource-filters select[name="category"], .edl-resource-filters select[name="resource_type"], .edl-resource-filters select[name="field_resource_category_target_id"], .edl-resource-filters select[name="field_resource_type_target_id"]')
+      .querySelectorAll('.edl-resource-filters select[name="category"], .edl-resource-filters select[name="category[]"], .edl-resource-filters select[name="resource_type"], .edl-resource-filters select[name="resource_type[]"], .edl-resource-filters select[name="field_resource_category_target_id"], .edl-resource-filters select[name="field_resource_category_target_id[]"], .edl-resource-filters select[name="field_resource_type_target_id"], .edl-resource-filters select[name="field_resource_type_target_id[]"]')
       .forEach((select) => {
         if (select.dataset.edlEnhanced === 'true') {
           return;
         }
+
+        select.multiple = true;
 
         const wrapper = document.createElement('div');
         wrapper.className = 'edl-checkbox-list';
@@ -34,14 +36,11 @@
           wrapper.append(item);
 
           checkbox.addEventListener('change', () => {
-            wrapper.querySelectorAll('input[type="checkbox"]').forEach((input) => {
-              if (input !== checkbox) {
-                input.checked = false;
-              }
-            });
+            const selectedValues = Array.from(wrapper.querySelectorAll('input[type="checkbox"]:checked'))
+              .map((input) => input.value);
 
             Array.from(select.options).forEach((selectOption) => {
-              selectOption.selected = selectOption.value === checkbox.value && checkbox.checked;
+              selectOption.selected = selectedValues.includes(selectOption.value);
             });
 
             select.form.requestSubmit();

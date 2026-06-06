@@ -324,7 +324,7 @@ function taxonomy_filter_options(string $field, string $table, string $label, st
     'value' => [],
     'group' => 1,
     'exposed' => TRUE,
-    'expose' => exposed_filter_options($label, $identifier, $field . '_op'),
+    'expose' => exposed_filter_options($label, $identifier, $field . '_op', TRUE),
     'is_grouped' => FALSE,
     'group_info' => grouped_filter_options($label, $identifier),
     'reduce_duplicates' => FALSE,
@@ -339,7 +339,7 @@ function taxonomy_filter_options(string $field, string $table, string $label, st
 /**
  * Returns common exposed filter settings.
  */
-function exposed_filter_options(string $label, string $identifier, string $operator_id): array {
+function exposed_filter_options(string $label, string $identifier, string $operator_id, bool $multiple = FALSE): array {
   return [
     'operator_id' => $operator_id,
     'label' => $label,
@@ -351,7 +351,7 @@ function exposed_filter_options(string $label, string $identifier, string $opera
     'identifier' => $identifier,
     'required' => FALSE,
     'remember' => FALSE,
-    'multiple' => FALSE,
+    'multiple' => $multiple,
     'remember_roles' => [
       'authenticated' => 'authenticated',
       'anonymous' => '0',
