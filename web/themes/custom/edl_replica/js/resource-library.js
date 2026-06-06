@@ -1,6 +1,7 @@
 (function () {
   function enhanceResourceFilters(context) {
     const root = context || document;
+    const heading = document.querySelector('.edl-resource-filters__heading h2');
 
     root
       .querySelectorAll('.edl-resource-filters select[name="category"], .edl-resource-filters select[name="resource_type"], .edl-resource-filters select[name="field_resource_category_target_id"], .edl-resource-filters select[name="field_resource_type_target_id"]')
@@ -24,6 +25,7 @@
           checkbox.type = 'checkbox';
           checkbox.value = option.value;
           checkbox.checked = option.selected;
+          checkbox.dataset.filterSelectName = select.name;
 
           const labelText = document.createElement('span');
           labelText.textContent = option.textContent;
@@ -50,6 +52,20 @@
         select.classList.add('edl-resource-original-select');
         select.insertAdjacentElement('afterend', wrapper);
       });
+
+    const updateFilterCount = () => {
+      if (!heading) {
+        return;
+      }
+
+      const selectedFilters = document.querySelectorAll('.edl-checkbox-list__item input:checked').length;
+      heading.textContent = `Filters (${selectedFilters})`;
+    };
+
+    document.querySelectorAll('.edl-checkbox-list__item input').forEach((checkbox) => {
+      checkbox.addEventListener('change', updateFilterCount);
+    });
+    updateFilterCount();
 
     root.querySelectorAll('.edl-resource-filters select[name="sort_by"]').forEach((select) => {
       if (select.dataset.edlSortEnhanced === 'true') {
