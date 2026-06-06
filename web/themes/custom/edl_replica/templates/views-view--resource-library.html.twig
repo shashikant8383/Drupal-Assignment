@@ -1,0 +1,34 @@
+<section class="edl-resource-header">
+  <div class="edl-container">
+    <h1>Resource Library</h1>
+    <p>
+      In this library, you can search for specific support topics and navigate to resources categorized by tools, technology and media format.
+    </p>
+  </div>
+</section>
+
+<section class="edl-resource-library">
+  <div class="edl-container edl-resource-layout">
+    {% if exposed %}
+      <aside class="edl-resource-filters">
+        <h2>Filter by</h2>
+        {{ exposed }}
+      </aside>
+    {% endif %}
+
+    <div class="edl-resource-main">
+      {{ title_prefix }}
+      {{ title_suffix }}
+
+      {% if rows %}
+        {{ rows }}
+      {% elseif empty %}
+        {{ empty }}
+      {% endif %}
+
+      {% if pager %}
+        {{ pager }}
+      {% endif %}
+    </div>
+  </div>
+</section>

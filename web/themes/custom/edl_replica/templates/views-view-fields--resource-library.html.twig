@@ -1,0 +1,31 @@
+<article class="edl-resource-card">
+  <div class="edl-resource-card__top">
+    <div class="edl-resource-card__category">
+      {{ fields.field_resource_category.content }}
+    </div>
+
+    {% if fields.field_resource_icon is defined %}
+      <div class="edl-resource-card__icon">
+        {{ fields.field_resource_icon.content }}
+      </div>
+    {% endif %}
+  </div>
+
+  <h2 class="edl-resource-card__title">
+    {{ fields.title.content }}
+  </h2>
+
+  {% if fields.field_resource_summary is defined %}
+    <div class="edl-resource-card__summary">
+      {{ fields.field_resource_summary.content }}
+    </div>
+  {% endif %}
+
+  <div class="edl-resource-card__type">
+    {{ fields.field_resource_type.content }}
+  </div>
+
+  <div class="edl-resource-card__link">
+    {{ fields.field_resource_link.content }}
+  </div>
+</article>
