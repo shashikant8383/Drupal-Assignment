@@ -1,0 +1,7 @@
+name: EDL Google Sheets
+type: module
+description: Sends EDL contact webform submissions to Google Sheets.
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - webform:webform

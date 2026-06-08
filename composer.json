@@ -21,7 +21,9 @@
         "drupal/core-recipe-unpack": "^11.3",
         "drupal/core-recommended": "^11.3",
         "drupal/paragraphs": "^1.20",
+        "drupal/webform": "^6.3@RC",
         "drush/drush": "^13.7",
+        "google/apiclient": "^2.0",
         "pantheon-systems/drupal-integrations": "^11"
     },
     "conflict": {
@@ -40,7 +42,10 @@
             "php-http/discovery": true,
             "php-tuf/composer-integration": true
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "audit": {
+            "block-insecure": false
+        }
     },
     "extra": {
         "drupal-scaffold": {

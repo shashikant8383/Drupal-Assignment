@@ -1,0 +1,8 @@
+services:
+  edl_google_sheets.client:
+    class: Drupal\edl_google_sheets\Service\GoogleSheetsClient
+    arguments: ['@config.factory', '@logger.channel.edl_google_sheets']
+
+  logger.channel.edl_google_sheets:
+    parent: logger.channel_base
+    arguments: ['edl_google_sheets']

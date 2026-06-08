@@ -1,0 +1,29 @@
+<?php
+
+use Drupal\webform\WebformSubmissionInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for webform_submission.
+ */
+function edl_google_sheets_webform_submission_insert(WebformSubmissionInterface $webform_submission): void {
+  $webform = $webform_submission->getWebform();
+
+  if ($webform->id() !== 'edl_contact') {
+    return;
+  }
+
+  $data = $webform_submission->getData();
+
+  $row = [
+    date('Y-m-d H:i:s', $webform_submission->getCreatedTime()),
+    $data['first_name'] ?? '',
+    $data['last_name'] ?? '',
+    $data['asu_email'] ?? '',
+    $data['phone_number'] ?? '',
+    $data['service_area'] ?? '',
+    $data['message'] ?? '',
+    $webform_submission->id(),
+  ];
+
+  \Drupal::service('edl_google_sheets.client')->appendContactSubmission($row);
+}
